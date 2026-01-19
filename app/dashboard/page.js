@@ -31,19 +31,20 @@ export default function DashboardPage() {
       fetchMeals();
       fetchBookedMeals();
     }
-    if (status === "loading") {
-      return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
-          <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
-        </div>
-      );
-    }
-
-    if (status === "unauthenticated") {
-      router.push("/login");
-      return null;
-    }
   }, [status]);
+
+  if (status === "loading") {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50 flex items-center justify-center">
+        <Loader2 className="w-12 h-12 text-blue-500 animate-spin" />
+      </div>
+    );
+  }
+
+  if (status === "unauthenticated") {
+    router.push("/login");
+    return null;
+  }
 
   const fetchMeals = async () => {
     try {
@@ -125,7 +126,7 @@ export default function DashboardPage() {
   };
 
   const upcomingMeals = meals.filter(
-    (meal) => new Date(meal.date) >= new Date(),
+    (meal) => new Date(meal.date) >= new Date()
   );
 
   return (
@@ -138,9 +139,7 @@ export default function DashboardPage() {
               <Utensils className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold text-slate-900">
-                Meal Dashboard
-              </h1>
+              <h1 className="text-2xl font-bold text-slate-900">Meal Dashboard</h1>
               <p className="text-sm text-slate-500">
                 Welcome, {session?.user?.name || "User"} 👋
               </p>
@@ -148,10 +147,8 @@ export default function DashboardPage() {
           </div>
           <div className="text-right">
             <p className="text-sm text-slate-600">
-              <span className="font-semibold text-blue-600">
-                {bookedMeals.size}
-              </span>{" "}
-              meal(s) booked
+              <span className="font-semibold text-blue-600">{bookedMeals.size}</span> meal(s)
+              booked
             </p>
           </div>
         </div>
@@ -190,9 +187,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-slate-600 text-sm font-medium">
-                  Upcoming Meals
-                </p>
+                <p className="text-slate-600 text-sm font-medium">Upcoming Meals</p>
                 <p className="text-3xl font-bold text-slate-900 mt-2">
                   {upcomingMeals.length}
                 </p>
@@ -206,9 +201,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-slate-600 text-sm font-medium">
-                  Meals Booked
-                </p>
+                <p className="text-slate-600 text-sm font-medium">Meals Booked</p>
                 <p className="text-3xl font-bold text-slate-900 mt-2">
                   {bookedMeals.size}
                 </p>
@@ -222,9 +215,7 @@ export default function DashboardPage() {
           <div className="bg-white rounded-xl p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-slate-600 text-sm font-medium">
-                  Available to Book
-                </p>
+                <p className="text-slate-600 text-sm font-medium">Available to Book</p>
                 <p className="text-3xl font-bold text-slate-900 mt-2">
                   {upcomingMeals.length - bookedMeals.size}
                 </p>
@@ -305,10 +296,7 @@ export default function DashboardPage() {
                             <p className="font-medium mb-1">Ingredients:</p>
                             <ul className="space-y-1">
                               {meal.ingredients.slice(0, 3).map((ing, idx) => (
-                                <li
-                                  key={idx}
-                                  className="text-xs text-slate-500"
-                                >
+                                <li key={idx} className="text-xs text-slate-500">
                                   • {ing.itemName} ({ing.gramsPerPax}g)
                                 </li>
                               ))}
@@ -326,9 +314,7 @@ export default function DashboardPage() {
                         <div className="flex items-center gap-3 text-slate-600">
                           <Users className="w-4 h-4 text-blue-600 flex-shrink-0" />
                           <span className="text-sm">
-                            {meal._count.attendance}{" "}
-                            {meal._count.attendance === 1 ? "person" : "people"}{" "}
-                            booked
+                            {meal._count.attendance} {meal._count.attendance === 1 ? "person" : "people"} booked
                           </span>
                         </div>
                       )}
@@ -337,15 +323,13 @@ export default function DashboardPage() {
                     {/* Book Button */}
                     <button
                       onClick={() => handleBookMeal(meal.id)}
-                      disabled={
-                        bookedMeals.has(meal.id) || bookingMealId === meal.id
-                      }
+                      disabled={bookedMeals.has(meal.id) || bookingMealId === meal.id}
                       className={`w-full py-3 rounded-lg font-semibold transition-all duration-200 flex items-center justify-center gap-2 mt-4 ${
                         bookedMeals.has(meal.id)
                           ? "bg-emerald-100 text-emerald-700 cursor-not-allowed"
                           : bookingMealId === meal.id
-                            ? "bg-blue-500 text-white opacity-75 cursor-not-allowed"
-                            : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg transform hover:scale-105"
+                          ? "bg-blue-500 text-white opacity-75 cursor-not-allowed"
+                          : "bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white hover:shadow-lg transform hover:scale-105"
                       }`}
                     >
                       {bookingMealId === meal.id ? (
