@@ -27,6 +27,7 @@ export type AggregateAttendance = {
 export type AttendanceMinAggregateOutputType = {
   id: string | null
   hasEaten: boolean | null
+  createdAt: Date | null
   userId: string | null
   mealId: string | null
 }
@@ -34,6 +35,7 @@ export type AttendanceMinAggregateOutputType = {
 export type AttendanceMaxAggregateOutputType = {
   id: string | null
   hasEaten: boolean | null
+  createdAt: Date | null
   userId: string | null
   mealId: string | null
 }
@@ -41,6 +43,7 @@ export type AttendanceMaxAggregateOutputType = {
 export type AttendanceCountAggregateOutputType = {
   id: number
   hasEaten: number
+  createdAt: number
   userId: number
   mealId: number
   _all: number
@@ -50,6 +53,7 @@ export type AttendanceCountAggregateOutputType = {
 export type AttendanceMinAggregateInputType = {
   id?: true
   hasEaten?: true
+  createdAt?: true
   userId?: true
   mealId?: true
 }
@@ -57,6 +61,7 @@ export type AttendanceMinAggregateInputType = {
 export type AttendanceMaxAggregateInputType = {
   id?: true
   hasEaten?: true
+  createdAt?: true
   userId?: true
   mealId?: true
 }
@@ -64,6 +69,7 @@ export type AttendanceMaxAggregateInputType = {
 export type AttendanceCountAggregateInputType = {
   id?: true
   hasEaten?: true
+  createdAt?: true
   userId?: true
   mealId?: true
   _all?: true
@@ -144,6 +150,7 @@ export type AttendanceGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 export type AttendanceGroupByOutputType = {
   id: string
   hasEaten: boolean
+  createdAt: Date
   userId: string
   mealId: string
   _count: AttendanceCountAggregateOutputType | null
@@ -172,6 +179,7 @@ export type AttendanceWhereInput = {
   NOT?: Prisma.AttendanceWhereInput | Prisma.AttendanceWhereInput[]
   id?: Prisma.StringFilter<"Attendance"> | string
   hasEaten?: Prisma.BoolFilter<"Attendance"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
   userId?: Prisma.StringFilter<"Attendance"> | string
   mealId?: Prisma.StringFilter<"Attendance"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -181,6 +189,7 @@ export type AttendanceWhereInput = {
 export type AttendanceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   hasEaten?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   mealId?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -194,6 +203,7 @@ export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AttendanceWhereInput[]
   NOT?: Prisma.AttendanceWhereInput | Prisma.AttendanceWhereInput[]
   hasEaten?: Prisma.BoolFilter<"Attendance"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
   userId?: Prisma.StringFilter<"Attendance"> | string
   mealId?: Prisma.StringFilter<"Attendance"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -203,6 +213,7 @@ export type AttendanceWhereUniqueInput = Prisma.AtLeast<{
 export type AttendanceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   hasEaten?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   mealId?: Prisma.SortOrder
   _count?: Prisma.AttendanceCountOrderByAggregateInput
@@ -216,6 +227,7 @@ export type AttendanceScalarWhereWithAggregatesInput = {
   NOT?: Prisma.AttendanceScalarWhereWithAggregatesInput | Prisma.AttendanceScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Attendance"> | string
   hasEaten?: Prisma.BoolWithAggregatesFilter<"Attendance"> | boolean
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Attendance"> | Date | string
   userId?: Prisma.StringWithAggregatesFilter<"Attendance"> | string
   mealId?: Prisma.StringWithAggregatesFilter<"Attendance"> | string
 }
@@ -223,6 +235,7 @@ export type AttendanceScalarWhereWithAggregatesInput = {
 export type AttendanceCreateInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAttendanceInput
   meal: Prisma.MealCreateNestedOneWithoutAttendanceInput
 }
@@ -230,6 +243,7 @@ export type AttendanceCreateInput = {
 export type AttendanceUncheckedCreateInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   userId: string
   mealId: string
 }
@@ -237,6 +251,7 @@ export type AttendanceUncheckedCreateInput = {
 export type AttendanceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAttendanceNestedInput
   meal?: Prisma.MealUpdateOneRequiredWithoutAttendanceNestedInput
 }
@@ -244,6 +259,7 @@ export type AttendanceUpdateInput = {
 export type AttendanceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -251,6 +267,7 @@ export type AttendanceUncheckedUpdateInput = {
 export type AttendanceCreateManyInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   userId: string
   mealId: string
 }
@@ -258,11 +275,13 @@ export type AttendanceCreateManyInput = {
 export type AttendanceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AttendanceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -285,6 +304,7 @@ export type AttendanceUserIdMealIdCompoundUniqueInput = {
 export type AttendanceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hasEaten?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   mealId?: Prisma.SortOrder
 }
@@ -292,6 +312,7 @@ export type AttendanceCountOrderByAggregateInput = {
 export type AttendanceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hasEaten?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   mealId?: Prisma.SortOrder
 }
@@ -299,6 +320,7 @@ export type AttendanceMaxOrderByAggregateInput = {
 export type AttendanceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   hasEaten?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   mealId?: Prisma.SortOrder
 }
@@ -390,12 +412,14 @@ export type AttendanceUncheckedUpdateManyWithoutMealNestedInput = {
 export type AttendanceCreateWithoutUserInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   meal: Prisma.MealCreateNestedOneWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutUserInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   mealId: string
 }
 
@@ -431,6 +455,7 @@ export type AttendanceScalarWhereInput = {
   NOT?: Prisma.AttendanceScalarWhereInput | Prisma.AttendanceScalarWhereInput[]
   id?: Prisma.StringFilter<"Attendance"> | string
   hasEaten?: Prisma.BoolFilter<"Attendance"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Attendance"> | Date | string
   userId?: Prisma.StringFilter<"Attendance"> | string
   mealId?: Prisma.StringFilter<"Attendance"> | string
 }
@@ -438,12 +463,14 @@ export type AttendanceScalarWhereInput = {
 export type AttendanceCreateWithoutMealInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAttendanceInput
 }
 
 export type AttendanceUncheckedCreateWithoutMealInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   userId: string
 }
 
@@ -476,48 +503,56 @@ export type AttendanceUpdateManyWithWhereWithoutMealInput = {
 export type AttendanceCreateManyUserInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   mealId: string
 }
 
 export type AttendanceUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meal?: Prisma.MealUpdateOneRequiredWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AttendanceUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AttendanceCreateManyMealInput = {
   id?: string
   hasEaten?: boolean
+  createdAt?: Date | string
   userId: string
 }
 
 export type AttendanceUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAttendanceNestedInput
 }
 
 export type AttendanceUncheckedUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AttendanceUncheckedUpdateManyWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   hasEaten?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -526,6 +561,7 @@ export type AttendanceUncheckedUpdateManyWithoutMealInput = {
 export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hasEaten?: boolean
+  createdAt?: boolean
   userId?: boolean
   mealId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -535,6 +571,7 @@ export type AttendanceSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type AttendanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hasEaten?: boolean
+  createdAt?: boolean
   userId?: boolean
   mealId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -544,6 +581,7 @@ export type AttendanceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   hasEaten?: boolean
+  createdAt?: boolean
   userId?: boolean
   mealId?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -553,11 +591,12 @@ export type AttendanceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
 export type AttendanceSelectScalar = {
   id?: boolean
   hasEaten?: boolean
+  createdAt?: boolean
   userId?: boolean
   mealId?: boolean
 }
 
-export type AttendanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hasEaten" | "userId" | "mealId", ExtArgs["result"]["attendance"]>
+export type AttendanceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hasEaten" | "createdAt" | "userId" | "mealId", ExtArgs["result"]["attendance"]>
 export type AttendanceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meal?: boolean | Prisma.MealDefaultArgs<ExtArgs>
@@ -580,6 +619,7 @@ export type $AttendancePayload<ExtArgs extends runtime.Types.Extensions.Internal
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     hasEaten: boolean
+    createdAt: Date
     userId: string
     mealId: string
   }, ExtArgs["result"]["attendance"]>
@@ -1009,6 +1049,7 @@ export interface Prisma__AttendanceClient<T, Null = never, ExtArgs extends runti
 export interface AttendanceFieldRefs {
   readonly id: Prisma.FieldRef<"Attendance", 'String'>
   readonly hasEaten: Prisma.FieldRef<"Attendance", 'Boolean'>
+  readonly createdAt: Prisma.FieldRef<"Attendance", 'DateTime'>
   readonly userId: Prisma.FieldRef<"Attendance", 'String'>
   readonly mealId: Prisma.FieldRef<"Attendance", 'String'>
 }

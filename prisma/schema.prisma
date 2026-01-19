@@ -57,6 +57,7 @@ model Meal {
 model Attendance {
   id       String  @id @default(cuid())
   hasEaten Boolean @default(false) // Check-in status (scanned QR code)
+  createdAt DateTime @default(now())
 
   // Relations
   user   User   @relation(fields: [userId], references: [id])

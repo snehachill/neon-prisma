@@ -131,29 +131,7 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      {/* Navigation Header */}
-      <div className="sticky top-0 z-40 bg-white shadow-sm border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="bg-blue-500 p-2.5 rounded-lg">
-              <Utensils className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-slate-900">Meal Dashboard</h1>
-              <p className="text-sm text-slate-500">
-                Welcome, {session?.user?.name || "User"} 👋
-              </p>
-            </div>
-          </div>
-          <div className="text-right">
-            <p className="text-sm text-slate-600">
-              <span className="font-semibold text-blue-600">{bookedMeals.size}</span> meal(s)
-              booked
-            </p>
-          </div>
-        </div>
-      </div>
-
+      
       {/* Notification */}
       {notification && (
         <div

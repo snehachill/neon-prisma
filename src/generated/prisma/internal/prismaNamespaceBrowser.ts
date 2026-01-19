@@ -101,6 +101,7 @@ export type MealScalarFieldEnum = (typeof MealScalarFieldEnum)[keyof typeof Meal
 export const AttendanceScalarFieldEnum = {
   id: 'id',
   hasEaten: 'hasEaten',
+  createdAt: 'createdAt',
   userId: 'userId',
   mealId: 'mealId'
 } as const
